@@ -1,6 +1,7 @@
 ///<reference path="./states/StateManager"/>
 ///<reference path="./states/Default"/>
 ///<reference path="./states/IState"/>
+///<reference path="./Board"/>
 
 interface Window {
   webkitRequestAnimationFrame(callback: FrameRequestCallback): number;
@@ -16,6 +17,7 @@ module khet {
     ctx: CanvasRenderingContext2D;
     stateManager: states.StateManager;
     lastFrame: number;
+    board: Board;
 
 
     constructor() {
@@ -29,6 +31,8 @@ module khet {
       this.stateManager.change('Default');
 
       this.bindListeners();
+
+      this.board = new Board();
 
       this.lastFrame = Date.now();
       this.cycle();
