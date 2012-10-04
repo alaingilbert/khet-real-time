@@ -2,22 +2,96 @@
 ///<reference path="./states/Default"/>
 ///<reference path="./states/IState"/>
 
+interface Window {
+  webkitRequestAnimationFrame(callback: FrameRequestCallback): number;
+};
 
 
 module khet {
 
   export class Core {
-    stateManager: states.StateManager;
-
     static inst: Core = null;
+
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    stateManager: states.StateManager;
+    lastFrame: number;
+
 
     constructor() {
       Core.inst = this;
 
+      this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
+      this.ctx = this.canvas.getContext('2d');
+
       this.stateManager = new states.StateManager();
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.change('Default');
+
+      this.bindListeners();
+
+      this.lastFrame = Date.now();
+      this.cycle();
       console.log('constructor');
+    };
+
+
+    cycle() {
+      var deltaTime: number = Date.now() - this.lastFrame;
+      this.lastFrame = Date.now();
+      this.update(deltaTime);
+      this.render();
+      window.webkitRequestAnimationFrame(requestId => this.cycle());
+    };
+
+
+    render() {
+      this.stateManager.state.render();
+    };
+
+
+    update(deltaTime: number) {
+      this.stateManager.state.update(deltaTime);
+    };
+
+
+    bindListeners() {
+      this.canvas.addEventListener('mousemove', evt => this.mouseMove(evt));
+      this.canvas.addEventListener('mousedown', evt => this.mouseDown(evt));
+      this.canvas.addEventListener('mouseup', evt => this.mouseUp(evt));
+      this.canvas.addEventListener('mousewheel', evt => this.mouseWheel(evt));
+      document.addEventListener('keydown', evt => this.keyDown(evt));
+      document.addEventListener('keyup', evt => this.keyUp(evt));
+      window.addEventListener('resize', evt => this.resize(evt));
+    };
+
+
+    mouseDown(evt) {
+    };
+
+
+    mouseUp(evt) {
+    };
+
+
+    mouseMove(evt) {
+      this.stateManager.state.mouseMove(evt);
+    };
+
+
+    mouseWheel(evt) {
+    };
+
+
+    keyDown(evt) {
+    };
+
+
+    keyUp(evt) {
+    };
+
+
+    resize(evt) {
     };
   }
 

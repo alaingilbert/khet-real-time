@@ -13,6 +13,8 @@ module khet.states {
     keyDown(evt: MouseEvent) { };
     keyUp(evt: MouseEvent) { };
     dispose() { };
+    update(deltaTime: number) { };
+    render() { };
   }
 
 }

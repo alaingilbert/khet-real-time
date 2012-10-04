@@ -9,6 +9,8 @@ module khet.states {
     keyDown: (MouseEvent) => void;
     keyUp: (MouseEvent) => void;
     dispose: () => void;
+    update: (deltaTime: number) => void;
+    render: () => void;
   }
 
 }
