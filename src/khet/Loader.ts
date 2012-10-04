@@ -41,17 +41,21 @@ module khet {
 
 
     getPath(mediaString: string): string {
-      return '';
+      var slashIdx = mediaString.lastIndexOf('/') + 1;
+      return mediaString.substring(0, slashIdx);
     }
 
 
     getFileName(mediaString: string): string {
-      return '';
+      var pointIdx = mediaString.lastIndexOf('.');
+      var slashIdx = mediaString.lastIndexOf('/') + 1;
+      return mediaString.substring(pointIdx, slashIdx);
     }
 
 
     getExtension(mediaString: string): string {
-      return '';
+      var idx = mediaString.lastIndexOf('.') + 1;
+      return mediaString.substr(idx);
     }
 
 
@@ -61,24 +65,31 @@ module khet {
       var label: string = alias || fileName;
 
       var image = new Image();
-      image.src = '';
+      image.src = path + fileName + '.' + extension;
       image.onload = () => this.mediaLoaded(label, image);
     }
 
 
-    loadSound() {
+    loadSound(path: string, fileName: string, extension: string,
+        alias?: string)
+    {
     }
 
 
     mediaLoaded(label: string, media) {
       this.nbLoaded++;
       this.progress = this.nbLoaded / this.total * 100;
+      this.onProgress(this.progress);
 
       this.medias[label] = media;
 
       if (this.nbLoaded === this.total) {
         this.allMediaLoaded();
       }
+    }
+
+
+    onProgress(progress) {
     }
 
 
