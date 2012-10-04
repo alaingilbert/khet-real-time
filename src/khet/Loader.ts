@@ -5,7 +5,7 @@ module khet {
     total: number;
     nbLoaded: number;
     medias: Object;
-    callback: (Object) => void;
+    allMediaLoaded: (Object) => void;
 
 
     constructor(mediaList: string[], callback: (Object) => void) {
@@ -13,7 +13,7 @@ module khet {
       this.nbLoaded = 0;
       this.progress = 0;
       this.total = mediaList.length;
-      this.callback = callback;
+      this.allMediaLoaded = callback;
 
       for (var i = 0; i < mediaList.length; i++) {
         var media = mediaList[i];
@@ -84,17 +84,20 @@ module khet {
       this.medias[label] = media;
 
       if (this.nbLoaded === this.total) {
-        this.allMediaLoaded();
+        this.allMediaLoaded(this.medias);
       }
     }
 
 
-    onProgress(progress) {
+    onProgress(progress: number) {
     }
 
 
-    allMediaLoaded() {
-      this.callback(this.medias);
+    dispose() {
+      this.nbLoaded = null;
+      this.total = null;
+      this.progress = null;
+      this.medias = null;
     }
   }
 

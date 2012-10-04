@@ -1,7 +1,7 @@
 ///<reference path="./states/StateManager"/>
 ///<reference path="./states/Default"/>
+///<reference path="./states/Menu"/>
 ///<reference path="./states/IState"/>
-///<reference path="./Board"/>
 
 ///<reference path="./Object2D"/>
 ///<reference path="./IManager"/>
@@ -23,7 +23,6 @@ module khet {
     ctx: CanvasRenderingContext2D;
     stateManager: states.StateManager;
     lastFrame: number;
-    board: Board;
 
 
     constructor() {
@@ -34,11 +33,10 @@ module khet {
 
       this.stateManager = new states.StateManager();
       this.stateManager.addState('Default', new states.Default());
+      this.stateManager.addState('Menu', new states.Menu());
       this.stateManager.change('Default');
 
       this.bindListeners();
-
-      this.board = new Board();
 
       this.lastFrame = Date.now();
       this.cycle();

@@ -6,12 +6,14 @@
 module khet.states {
 
   export class Default extends State {
+    loader: Loader;
+
 
     init() {
       var mediaFiles = ['./img/sprite.png', './img/ankh.png', './img/eye.png'];
-      var loader = new Loader(mediaFiles, medias => this.mediasLoaded(medias));
-      loader.onProgress = progress => this.onProgress(progress);
-    };
+      this.loader = new Loader(mediaFiles, medias => this.mediasLoaded(medias));
+      this.loader.onProgress = progress => this.onProgress(progress);
+    }
 
 
     onProgress(progress) {
@@ -21,12 +23,18 @@ module khet.states {
 
     mediasLoaded(medias: Object) {
       console.log('loaded', medias);
+      Core.inst.stateManager.change('Menu');
     }
 
 
     render() {
-      Core.inst.board.render();
-    };
+    }
+
+
+    dispose() {
+      this.loader.dispose();
+      this.loader = null;
+    }
   }
 
 }
