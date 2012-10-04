@@ -37,6 +37,8 @@ module khet.states {
 
       this.label = label;
       this.state = this.states[label];
+
+      this.state.init();
     };
   }
 

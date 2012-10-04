@@ -32,7 +32,6 @@ module khet {
 
       this.lastFrame = Date.now();
       this.cycle();
-      console.log('constructor');
     };
 
 

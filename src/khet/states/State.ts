@@ -12,6 +12,7 @@ module khet.states {
     mouseWheel(evt: MouseEvent) { };
     keyDown(evt: MouseEvent) { };
     keyUp(evt: MouseEvent) { };
+    init() { };
     dispose() { };
     update(deltaTime: number) { };
     render() { };

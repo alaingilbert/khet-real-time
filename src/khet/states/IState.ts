@@ -8,6 +8,7 @@ module khet.states {
     mouseWheel: (MouseEvent) => void;
     keyDown: (MouseEvent) => void;
     keyUp: (MouseEvent) => void;
+    init: () => void;
     dispose: () => void;
     update: (deltaTime: number) => void;
     render: () => void;
