@@ -3,9 +3,15 @@
 ///<reference path="./states/IState"/>
 ///<reference path="./Board"/>
 
+///<reference path="./Object2D"/>
+///<reference path="./IManager"/>
+
+
+
 interface Window {
   webkitRequestAnimationFrame(callback: FrameRequestCallback): number;
 };
+
 
 
 module khet {
@@ -36,7 +42,7 @@ module khet {
 
       this.lastFrame = Date.now();
       this.cycle();
-    };
+    }
 
 
     cycle() {
@@ -45,17 +51,17 @@ module khet {
       this.update(deltaTime);
       this.render();
       window.webkitRequestAnimationFrame(requestId => this.cycle());
-    };
+    }
 
 
     render() {
       this.stateManager.state.render();
-    };
+    }
 
 
     update(deltaTime: number) {
       this.stateManager.state.update(deltaTime);
-    };
+    }
 
 
     bindListeners() {
@@ -66,36 +72,36 @@ module khet {
       document.addEventListener('keydown', evt => this.keyDown(evt));
       document.addEventListener('keyup', evt => this.keyUp(evt));
       window.addEventListener('resize', evt => this.resize(evt));
-    };
+    }
 
 
     mouseDown(evt) {
-    };
+    }
 
 
     mouseUp(evt) {
-    };
+    }
 
 
     mouseMove(evt) {
       this.stateManager.state.mouseMove(evt);
-    };
+    }
 
 
     mouseWheel(evt) {
-    };
+    }
 
 
     keyDown(evt) {
-    };
+    }
 
 
     keyUp(evt) {
-    };
+    }
 
 
     resize(evt) {
-    };
+    }
   }
 
 }
