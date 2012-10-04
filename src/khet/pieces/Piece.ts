@@ -12,6 +12,12 @@ module khet {
 
 
     move() {
+      this.lastMove = Date.now();
+    }
+
+
+    canMove() {
+      return Date.now() - this.lastMove >= Piece.moveDelay;
     }
   }
 

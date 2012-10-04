@@ -2,9 +2,15 @@
 ///<reference path="./states/Default"/>
 ///<reference path="./states/IState"/>
 
+///<reference path="./Object2D"/>
+///<reference path="./IManager"/>
+
+
+
 interface Window {
   webkitRequestAnimationFrame(callback: FrameRequestCallback): number;
 };
+
 
 
 module khet {
