@@ -1,7 +1,7 @@
 ///<reference path="./IState"/>
 
 
-module khet.state {
+module khet.states {
 
   export class State implements IState {
 

@@ -1,4 +1,4 @@
-module khet.state {
+module khet.states {
 
   export interface IState {
     click: (MouseEvent) => void;

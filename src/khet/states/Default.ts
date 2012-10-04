@@ -2,7 +2,7 @@
 
 
 
-module khet.state {
+module khet.states {
 
   export class Default extends State {
   }

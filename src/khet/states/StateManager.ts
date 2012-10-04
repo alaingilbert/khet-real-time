@@ -2,7 +2,7 @@
 
 
 
-module khet.state {
+module khet.states {
 
   export class StateManager {
     states: Object;
