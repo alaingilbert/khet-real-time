@@ -10,7 +10,7 @@ install:
 
 
 watch-typescript:
-	supervisor -w ./ -n exit -e 'ts' -x make --
+	supervisor -w ./src/ -n exit -e 'ts' -x make --
 
 
 release:

@@ -4,7 +4,7 @@
 
 module khet {
 
-  export class Piece extends Object2D {
+  export class Board extends Object2D {
   }
 
 }
