@@ -46,7 +46,7 @@ module khet {
       this.ctx = this.canvas.getContext('2d');
 
       this.stateManager = new states.StateManager();
-      this.socket = io.connect('http://127.0.0.1:7000/');
+      this.socket = io.connect('http://127.0.0.1:3000/');
 
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());
