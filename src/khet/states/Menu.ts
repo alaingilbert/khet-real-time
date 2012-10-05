@@ -12,8 +12,8 @@ module khet.states {
 
     init() {
       this.board = new Board(12, 12, 600);
-      this.pieceManager = Core.inst.pieceManager;
-      var anubis = new khet.pieces.Anubis(1, 1, Team.Red);
+      this.pieceManager = this.board.pieceManager;
+      var anubis = new khet.pieces.Anubis(1, 1, Team.Gray);
       this.pieceManager.push(anubis);
     }
 

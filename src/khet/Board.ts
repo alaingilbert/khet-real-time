@@ -1,34 +1,45 @@
+///<reference path="../math/Coordinate"/>
 ///<reference path="./Object2D"/>
 ///<reference path="./BitmapData"/>
+///<reference path="./pieces/PieceManager"/>
 
 
 
 module khet {
 
   export class Board extends Object2D {
-    static backgroundColor = '#3e4245';
-    static borderColor = '#62626b';
+    static caseWidth: number = 62;
+    static backgroundColor: string = '#3e4245';
+    static borderColor: string = '#62626b';
 
-    caseWidth: number;
+
+    static getCasePosition(caseX: number, caseY: number): math.Coordinate {
+      var x: number = caseX * Board.caseWidth;
+      var y: number = caseY * Board.caseWidth;
+      return new math.Coordinate(x, y);
+    }
+
+
     nbCasesWidth: number;
     nbCasesHeight: number;
     cache: BitmapData;
+    pieceManager: pieces.PieceManager;
 
 
     constructor(x?: number = 0, y?: number = 0,
         width?:number = 0) {
       super(x, y, 10 * 62, 8 * 62);
 
-      this.caseWidth = 62;
       this.nbCasesWidth = 10;
       this.nbCasesHeight = 8;
       this.cache = new BitmapData(this.width, this.height);
+      this.pieceManager = new pieces.PieceManager();
       this.generateBoard();
     }
 
 
     generateBoard() {
-      var imageSize = this.caseWidth - 2;
+      var imageSize = Board.caseWidth - 2;
       var ctx: CanvasRenderingContext2D = this.cache.canvas.getContext('2d');
       ctx.save();
       ctx.fillStyle = Board.backgroundColor;
@@ -36,38 +47,38 @@ module khet {
 
       ctx.fillRect(0, 0, this.width, this.height);
       for (var i: number = 0; i < this.nbCasesWidth; i++) {
-        ctx.moveTo(i * this.caseWidth + 0.5, 0);
-        ctx.lineTo(i * this.caseWidth + 0.5, this.height);
+        ctx.moveTo(i * Board.caseWidth + 0.5, 0);
+        ctx.lineTo(i * Board.caseWidth + 0.5, this.height);
         if (i <= this.nbCasesHeight) {
-          ctx.moveTo(0, i * this.caseWidth + 0.5);
-          ctx.lineTo(this.width, i * this.caseWidth + 0.5);
+          ctx.moveTo(0, i * Board.caseWidth + 0.5);
+          ctx.lineTo(this.width, i * Board.caseWidth + 0.5);
         }
       }
       ctx.stroke();
 
-      var xTranslation: number = 1 + (this.nbCasesWidth - 1) * this.caseWidth;
+      var xTranslation: number = 1 + (this.nbCasesWidth - 1) * Board.caseWidth;
       var yTranslation: number = 1;
       for (var i: number = 0; i < this.nbCasesHeight; i++) {
         ctx.drawImage(Core.inst.medias['eye'],
             1, yTranslation, imageSize, imageSize);
         ctx.drawImage(Core.inst.medias['ankh'],
             xTranslation, yTranslation, imageSize, imageSize);
-        yTranslation += this.caseWidth;
+        yTranslation += Board.caseWidth;
       }
 
-      xTranslation = 1 + (this.nbCasesWidth - 2) * this.caseWidth;
+      xTranslation = 1 + (this.nbCasesWidth - 2) * Board.caseWidth;
       yTranslation = 1;
       ctx.drawImage(Core.inst.medias['eye'],
           xTranslation, yTranslation, imageSize, imageSize);
-      yTranslation += (this.nbCasesHeight - 1) * this.caseWidth;
+      yTranslation += (this.nbCasesHeight - 1) * Board.caseWidth;
       ctx.drawImage(Core.inst.medias['eye'],
           xTranslation, yTranslation, imageSize, imageSize);
 
-      xTranslation = 1 + this.caseWidth;
+      xTranslation = 1 + Board.caseWidth;
       yTranslation = 1;
       ctx.drawImage(Core.inst.medias['ankh'],
           xTranslation, yTranslation, imageSize, imageSize);
-      yTranslation += (this.nbCasesHeight - 1) * this.caseWidth;
+      yTranslation += (this.nbCasesHeight - 1) * Board.caseWidth;
       ctx.drawImage(Core.inst.medias['ankh'],
           xTranslation, yTranslation, imageSize, imageSize);
 
@@ -79,7 +90,13 @@ module khet {
       var ctx: CanvasRenderingContext2D = khet.Core.inst.ctx;
       ctx.save();
       ctx.translate(this.x, this.y);
+
+      // Draw the board
       ctx.drawImage(this.cache.canvas, 0, 0);
+
+      // Draw every pieces
+      this.pieceManager.render();
+
       ctx.restore();
     }
   }

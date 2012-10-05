@@ -1,5 +1,6 @@
 ///<reference path="../Object2D"/>
 ///<reference path="./IPiece"/>
+///<reference path="./math/Coordinate"/>
 
 
 
@@ -11,8 +12,13 @@ module khet {
     lastMove: number;
 
 
-    constructor(caseX: number, caseY: number, team: Team) {
-      super(0, 0, 0, 0);
+    constructor(public caseX: number, public caseY: number,
+        public team: Team)
+    {
+      super(0, 0, 60, 60);
+      var position: math.Coordinate = Board.getCasePosition(caseX, caseY);
+      this.x = position.x;
+      this.y = position.y;
     }
 
 

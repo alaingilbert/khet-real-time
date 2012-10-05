@@ -17,6 +17,12 @@ module khet.pieces {
       ctx.save();
       ctx.translate(this.x, this.y);
 
+      var spriteX: number = 2 * 159;
+      var spriteY: number = this.team == Team.Gray ? 0 : 159;
+      ctx.drawImage(Core.inst.medias['sprite'],
+          spriteX, spriteY, 159, 159,
+          0, 0, this.width, this.height);
+
       ctx.restore();
     }
   }
