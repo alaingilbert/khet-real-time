@@ -11,6 +11,11 @@ module khet {
     lastMove: number;
 
 
+    constructor(caseX: number, caseY: number, team: Team) {
+      super(0, 0, 0, 0);
+    }
+
+
     move() {
       this.lastMove = Date.now();
     }

@@ -1,7 +1,9 @@
+///<reference path="./pieces/PieceManager"/>
 ///<reference path="./states/StateManager"/>
 ///<reference path="./states/Default"/>
 ///<reference path="./states/Menu"/>
 ///<reference path="./states/IState"/>
+///<reference path="./pieces/Anubis"/>
 
 ///<reference path="./Object2D"/>
 ///<reference path="./ObjectManager"/>
@@ -15,6 +17,13 @@ interface Window {
 
 
 
+enum Team {
+  Gray,
+  Red
+}
+
+
+
 module khet {
 
   export class Core {
@@ -25,6 +34,7 @@ module khet {
     stateManager: states.StateManager;
     lastFrame: number;
     medias: Object;
+    pieceManager: pieces.PieceManager;
 
 
     constructor() {
@@ -34,6 +44,8 @@ module khet {
       this.ctx = this.canvas.getContext('2d');
 
       this.stateManager = new states.StateManager();
+      this.pieceManager = new pieces.PieceManager();
+
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());
       this.stateManager.change('Default');

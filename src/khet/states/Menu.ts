@@ -7,10 +7,14 @@ module khet.states {
 
   export class Menu extends State {
     board: Board;
+    pieceManager: khet.pieces.PieceManager;
 
 
     init() {
       this.board = new Board(12, 12, 600);
+      this.pieceManager = Core.inst.pieceManager;
+      var anubis = new khet.pieces.Anubis(1, 1, Team.Red);
+      this.pieceManager.push(anubis);
     }
 
 
