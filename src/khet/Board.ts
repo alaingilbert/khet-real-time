@@ -78,6 +78,7 @@ module khet {
     render() {
       var ctx: CanvasRenderingContext2D = khet.Core.inst.ctx;
       ctx.save();
+      ctx.translate(this.x, this.y);
       ctx.drawImage(this.cache.canvas, 0, 0);
       ctx.restore();
     }
