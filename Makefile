@@ -1,24 +1,16 @@
 .PHONY: all release install watch-typescript count server
 
 
-CHDIR_SHELL := $(SHELL)
-define chdir
-	$(eval _D=$(firstword $(1) $(@D)))
-	$(info $(MAKE): cd $(_D)) $(eval SHELL = cd $(_D); $(CHDIR_SHELL))
-endef
-
-
 all: release
 
 
 server:
-	cd app; node app
+	node app/app.js
 
 
 install:
 	sudo npm install -g supervisor
 	sudo npm install -g typescript
-	$(call chdir, ./app)
 	npm install
 
 watch-typescript:
