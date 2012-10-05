@@ -23,11 +23,11 @@ module khet {
       this.nbCasesWidth = 10;
       this.nbCasesHeight = 8;
       this.cache = new BitmapData(this.width, this.height);
-      this.init();
+      this.generateBoard();
     }
 
 
-    init() {
+    generateBoard() {
       var imageSize = this.caseWidth - 2;
       var ctx: CanvasRenderingContext2D = this.cache.canvas.getContext('2d');
       ctx.save();
