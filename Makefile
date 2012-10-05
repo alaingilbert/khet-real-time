@@ -1,4 +1,4 @@
-.PHONY: all release install watch-typescript
+.PHONY: all release install watch-typescript count
 
 
 all: release
@@ -15,3 +15,6 @@ watch-typescript:
 
 release:
 	tsc src/khet/Game.ts --out public/js/compiled.js
+
+count:
+	find ./ -name '*.ts' | xargs wc -l
