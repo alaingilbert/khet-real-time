@@ -4,6 +4,7 @@
 ///<reference path="./states/IState"/>
 
 ///<reference path="./Object2D"/>
+///<reference path="./ObjectManager"/>
 ///<reference path="./IManager"/>
 
 

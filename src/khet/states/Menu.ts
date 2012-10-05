@@ -26,6 +26,11 @@ module khet.states {
     }
 
 
+    mouseMove(evt: MouseEvent) {
+      console.log(evt.offsetX, evt.offsetY);
+    }
+
+
     dispose() {
       console.log('Menu, Dispose');
     }

@@ -2,7 +2,7 @@ module khet {
 
   export interface IManager {
     push: (IObject2D) => void;
-    remove: (IObject2D) => bool;
+    remove: (IObject2D) => IObject2D;
     reset: () => void;
     focus: (IObject2D) => void;
     render: () => void;

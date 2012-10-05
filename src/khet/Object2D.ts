@@ -19,5 +19,13 @@ module khet {
 
     update(deltaTime: number) {
     }
+
+
+    isPointInside(x: number, y: number): bool {
+      return x >= this.x &&
+             y >= this.y &&
+             x <= this.x + this.width &&
+             y <= this.y + this.height;
+    }
   }
 }

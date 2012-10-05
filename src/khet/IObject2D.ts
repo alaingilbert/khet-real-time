@@ -9,6 +9,7 @@ module khet {
     angle: number;
     render: () => void;
     update: (deltaTime: number) => void;
+    isPointInside: (x: number, y: number) => bool;
   }
 
 }
