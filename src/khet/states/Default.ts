@@ -22,6 +22,7 @@ module khet.states {
 
 
     mediasLoaded(medias: Object) {
+      Core.inst.medias = medias;
       console.log('loaded', medias);
       Core.inst.stateManager.change('Menu');
     }

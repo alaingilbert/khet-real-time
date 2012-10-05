@@ -23,6 +23,7 @@ module khet {
     ctx: CanvasRenderingContext2D;
     stateManager: states.StateManager;
     lastFrame: number;
+    medias: Object;
 
 
     constructor() {

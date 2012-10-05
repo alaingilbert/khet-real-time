@@ -10,12 +10,18 @@ module khet.states {
 
 
     init() {
-      this.board = new Board();
+      this.board = new Board(0, 0, 600);
     }
 
 
     render() {
+      var ctx: CanvasRenderingContext2D = khet.Core.inst.ctx;
+      ctx.save();
+      ctx.clearRect(0, 0, Core.inst.canvas.width, Core.inst.canvas.height);
+
       this.board.render();
+
+      ctx.restore();
     }
 
 
