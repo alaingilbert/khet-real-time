@@ -14,7 +14,7 @@ watch-typescript:
 
 
 release:
-	tsc src/khet/Game.ts --out public/js/compiled.js
+	tsc src/khet/Game.ts --out app/public/javascripts/compiled.js
 
 count:
 	find ./ -name '*.ts' | xargs wc -l

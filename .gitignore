@@ -1,4 +1,4 @@
 .DS_Store
 *.swp
-public/js/compiled.js
+compiled.js
 node_modules/

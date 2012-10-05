@@ -10,7 +10,9 @@ module khet.states {
 
 
     init() {
-      var mediaFiles = ['./img/sprite.png', './img/ankh.png', './img/eye.png'];
+      var mediaFiles = ['/images/sprite.png',
+                        '/images/ankh.png',
+                        '/images/eye.png'];
       this.loader = new Loader(mediaFiles, medias => this.mediasLoaded(medias));
       this.loader.onProgress = progress => this.onProgress(progress);
     }
