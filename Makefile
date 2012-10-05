@@ -1,4 +1,4 @@
-.PHONY: all release install watch-typescript count
+.PHONY: all release install watch-typescript count server
 
 
 CHDIR_SHELL := $(SHELL)
@@ -9,6 +9,10 @@ endef
 
 
 all: release
+
+
+server:
+	cd app; node app
 
 
 install:
