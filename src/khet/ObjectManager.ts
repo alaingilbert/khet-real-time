@@ -47,10 +47,16 @@ module khet {
 
 
     render() {
+      for (var i: number = 0; i < this.length(); i++) {
+        this.objs[i].render();
+      }
     }
 
 
     update(deltaTime: number) {
+      for (var i: number = 0; i < this.length(); i++) {
+        this.objs[i].update(deltaTime);
+      }
     }
 
 
