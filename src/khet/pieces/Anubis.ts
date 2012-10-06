@@ -23,6 +23,12 @@ module khet.pieces {
           spriteX, spriteY, 159, 159,
           0, 0, this.width, this.height);
 
+
+      if (this.over) {
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.4)';
+        ctx.fillRect(0, 0, this.width, this.height);
+      }
+
       ctx.restore();
     }
   }

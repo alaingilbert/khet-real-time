@@ -4,6 +4,7 @@
 ///<reference path="./states/Menu"/>
 ///<reference path="./states/IState"/>
 ///<reference path="./pieces/Anubis"/>
+///<reference path="./events"/>
 
 ///<reference path="./Object2D"/>
 ///<reference path="./ObjectManager"/>
@@ -87,8 +88,8 @@ module khet {
 
 
     bindListeners() {
-      this.canvas.addEventListener('mousemove',
-          (evt: MouseEvent) => this.mouseMove(evt), false);
+      events.listen(this.canvas, 'mousemove',
+          (evt: MouseEvent) => this.mouseMove(evt));
 
       this.canvas.addEventListener('mousedown',
           (evt: MouseEvent) => this.mouseDown(evt), false);

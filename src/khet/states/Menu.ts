@@ -34,7 +34,7 @@ module khet.states {
       var x: number = evt.offsetX;
       var y: number = evt.offsetY;
       this.board.mouseMove(evt);
-      console.log(x, y, Board.getCase(x, y).toString());
+      //console.log(x, y, Board.getCase(x, y).toString());
     }
 
 

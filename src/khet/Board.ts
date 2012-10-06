@@ -48,6 +48,8 @@ module khet {
     mouseMove(evt: MouseEvent): bool {
       if (evt.stop) { return false; }
 
+      evt.offsetX -= this.x;
+      evt.offsetY -= this.y;
       this.pieceManager.mouseMove(evt);
 
       return true;
