@@ -68,6 +68,40 @@ module khet {
     has(obj: IObject2D) {
       return this.indexOf(obj) !== -1;
     }
+
+
+    mouseMove(evt: MouseEvent): bool {
+      if (evt.stop) { return false; }
+
+      var mouseX: number = evt.offsetX;
+      var mouseY: number = evt.offsetY;
+
+      for (var i: number = this.objs.length - 1; i >= 0; i--) {
+        var obj: IObject2D = this.objs[i];
+        if (obj.isPointInside(mouseX, mouseY)) {
+          evt.stop = true;
+          if (!obj.over) {
+            if (Core.inst.over && Core.inst.over.over) {
+              Core.inst.over.over = false;
+            }
+            Core.inst.over = obj;
+            obj.over = true;
+            obj.mouseOver(evt);
+            break;
+          }
+          obj.mouseMove(evt);
+          break;
+        } else {
+          if (obj.over) {
+            Core.inst.over = null;
+            obj.over = false;
+            obj.mouseOut(evt);
+            break;
+          }
+        }
+      }
+      return true;
+    }
   }
 
 }

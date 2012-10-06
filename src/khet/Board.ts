@@ -20,6 +20,13 @@ module khet {
     }
 
 
+    static getCase(x: number, y: number): math.Coordinate {
+      var caseX: number = Math.floor(x / Board.caseWidth);
+      var caseY: number = Math.floor(y / Board.caseWidth);
+      return new math.Coordinate(caseX, caseY);
+    }
+
+
     nbCasesWidth: number;
     nbCasesHeight: number;
     cache: BitmapData;
@@ -27,7 +34,7 @@ module khet {
 
 
     constructor(x?: number = 0, y?: number = 0,
-        width?:number = 0) {
+        width?: number = 0) {
       super(x, y, 10 * 62, 8 * 62);
 
       this.nbCasesWidth = 10;
@@ -35,6 +42,15 @@ module khet {
       this.cache = new BitmapData(this.width, this.height);
       this.pieceManager = new pieces.PieceManager();
       this.generateBoard();
+    }
+
+
+    mouseMove(evt: MouseEvent): bool {
+      if (evt.stop) { return false; }
+
+      this.pieceManager.mouseMove(evt);
+
+      return true;
     }
 
 

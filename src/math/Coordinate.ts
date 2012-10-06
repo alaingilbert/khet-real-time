@@ -20,6 +20,11 @@ module math {
     }
 
 
+    toString(): string {
+      return '(' + this.x + ', ' + this.y + ')';
+    }
+
+
     static equals(a: Coordinate, b: Coordinate): bool {
       if (a == b) {
         return true;

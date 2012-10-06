@@ -11,7 +11,7 @@ module khet.states {
 
 
     init() {
-      this.board = new Board(12, 12, 600);
+      this.board = new Board(30, 0, 600);
       this.pieceManager = this.board.pieceManager;
       var anubis = new khet.pieces.Anubis(1, 1, Team.Gray);
       this.pieceManager.push(anubis);
@@ -31,7 +31,10 @@ module khet.states {
 
 
     mouseMove(evt: MouseEvent) {
-      console.log(evt.offsetX, evt.offsetY);
+      var x: number = evt.offsetX;
+      var y: number = evt.offsetY;
+      this.board.mouseMove(evt);
+      console.log(x, y, Board.getCase(x, y).toString());
     }
 
 

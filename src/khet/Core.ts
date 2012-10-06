@@ -13,7 +13,13 @@
 
 interface Window {
   webkitRequestAnimationFrame(callback: FrameRequestCallback): number;
-};
+}
+
+
+
+interface MouseEvent {
+  stop: bool;
+}
 
 
 
@@ -37,6 +43,8 @@ module khet {
     lastFrame: number;
     medias: Object;
     socket;
+    over: IObject2D;
+    selected: IObject2D;
 
 
     constructor() {
@@ -79,13 +87,26 @@ module khet {
 
 
     bindListeners() {
-      this.canvas.addEventListener('mousemove', evt => this.mouseMove(evt));
-      this.canvas.addEventListener('mousedown', evt => this.mouseDown(evt));
-      this.canvas.addEventListener('mouseup', evt => this.mouseUp(evt));
-      this.canvas.addEventListener('mousewheel', evt => this.mouseWheel(evt));
-      document.addEventListener('keydown', evt => this.keyDown(evt));
-      document.addEventListener('keyup', evt => this.keyUp(evt));
-      window.addEventListener('resize', evt => this.resize(evt));
+      this.canvas.addEventListener('mousemove',
+          (evt: MouseEvent) => this.mouseMove(evt), false);
+
+      this.canvas.addEventListener('mousedown',
+          (evt: MouseEvent) => this.mouseDown(evt), false);
+
+      this.canvas.addEventListener('mouseup',
+          (evt: MouseEvent) => this.mouseUp(evt), false);
+
+      this.canvas.addEventListener('mousewheel',
+          (evt: MouseEvent) => this.mouseWheel(evt), false);
+
+      document.addEventListener('keydown',
+          (evt: MouseEvent) => this.keyDown(evt), false);
+
+      document.addEventListener('keyup',
+          (evt: MouseEvent) => this.keyUp(evt), false);
+
+      window.addEventListener('resize',
+          (evt: MouseEvent) => this.resize(evt), false);
     }
 
 
@@ -97,7 +118,8 @@ module khet {
     }
 
 
-    mouseMove(evt) {
+    mouseMove(evt: MouseEvent) {
+      evt.stop = false;
       this.stateManager.state.mouseMove(evt);
     }
 
