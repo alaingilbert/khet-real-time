@@ -1,7 +1,11 @@
-.PHONY: all release install watch-typescript count server deploy heroku
+.PHONY: all release install watch-typescript count server deploy heroku start
 
 
 all: release
+
+
+start:
+	foreman start
 
 
 server:

@@ -13,7 +13,9 @@
 
 ### Start server
 
-`make server`
+If you have foreman (heroku stuff) `make start`
+
+Else `make server`
 
 ### Load page
 
