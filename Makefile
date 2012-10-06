@@ -10,7 +10,6 @@ server:
 
 install:
 	sudo npm install -g supervisor
-	sudo npm install -g typescript
 	npm install
 
 
@@ -19,7 +18,7 @@ watch-typescript:
 
 
 release:
-	tsc src/khet/Game.ts --out app/public/javascripts/compiled.js
+	./node_modules/typescript/bin/tsc src/khet/Game.ts --out app/public/javascripts/compiled.js
 
 
 count:
