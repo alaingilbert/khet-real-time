@@ -9,16 +9,15 @@ server:
 
 
 install:
-	sudo npm install -g supervisor
 	npm install
 
 
 watch-typescript:
-	supervisor -w ./src/ -n exit -e 'ts' -x make --
+	./node_modules/.bin/supervisor -w ./src/ -n exit -e 'ts' -x make --
 
 
 release:
-	./node_modules/typescript/bin/tsc src/khet/Game.ts --out app/public/javascripts/compiled.js
+	./node_modules/.bin/tsc src/khet/Game.ts --out app/public/javascripts/compiled.js
 
 
 count:
