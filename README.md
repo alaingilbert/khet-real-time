@@ -2,7 +2,7 @@
 
 ## Developpement
 
-### Installation
+### Install dependencies
 
 `make install`
 
