@@ -10,6 +10,9 @@
 
 `make watch-typescript`
 
+### Compile typescript sources
+
+`make release`
 
 ### Start server
 
