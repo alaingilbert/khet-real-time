@@ -25,7 +25,7 @@ release:
 
 
 count:
-	find ./ -name '*.ts' | xargs wc -l
+	find ./src/ -name '*.ts' | xargs wc -l
 
 
 deploy:
