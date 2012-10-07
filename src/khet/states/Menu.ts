@@ -14,31 +14,31 @@ module khet.states {
       var y: number = 30;
       var step: number = 60;
 
-      var btnClassic = new Button('Classic', 10, y, 150, 50);
+      var btnClassic: Button = new Button('Classic', 10, y, 150, 50);
       btnClassic.click = function() {
         Core.inst.stateManager.change('Game');
       };
 
       y += step;
-      var btnDynasty = new Button('Dynasty', 10, y, 150, 50);
+      var btnDynasty: Button = new Button('Dynasty', 10, y, 150, 50);
       btnDynasty.click = function() {
         Core.inst.stateManager.change('Game');
       };
 
       y += step;
-      var btnImhotep = new Button('Imhotep', 10, y, 150, 50);
+      var btnImhotep: Button = new Button('Imhotep', 10, y, 150, 50);
       btnImhotep.click = function() {
         Core.inst.stateManager.change('Game');
       };
 
       y += step;
-      var btnIsis = new Button('Isis', 10, y, 150, 50);
+      var btnIsis: Button = new Button('Isis', 10, y, 150, 50);
       btnIsis.click = function() {
         Core.inst.stateManager.change('Game');
       };
 
       y += step;
-      var btnOsiris = new Button('Osiris', 10, y, 150, 50);
+      var btnOsiris: Button = new Button('Osiris', 10, y, 150, 50);
       btnOsiris.click = function() {
         Core.inst.stateManager.change('Game');
       };

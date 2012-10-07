@@ -3,11 +3,27 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-responsive.min.css' />
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <canvas id="canvas" width="800" height="600"></canvas>
-    <script src="/javascripts/compiled.js"></script>
+
+  <div class="container">
+    <div class="row">
+      <div class="span2">
+        <button id="btnSilver" class="btn btn-large btn-block" type="button">Sit as Silver</button>
+        <button id="btnRed" class="btn btn-large btn-block" type="button">Sit as Red</button>
+        <button id="btnStart" class="btn btn-large btn-block disabled" type="button">Start Game</button>
+      </div>
+      <div class="span10">
+        <canvas id="canvas" width="800" height="600"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="/javascripts/compiled.js"></script>
+
   </body>
 </html>

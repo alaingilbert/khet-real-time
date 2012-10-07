@@ -3,6 +3,7 @@
 ///<reference path="./states/Default"/>
 ///<reference path="./states/Menu"/>
 ///<reference path="./states/Game"/>
+///<reference path="./states/Waiting"/>
 ///<reference path="./states/IState"/>
 ///<reference path="./pieces/Anubis"/>
 ///<reference path="./events"/>
@@ -61,6 +62,7 @@ module khet {
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());
       this.stateManager.addState('Game', new states.Game());
+      this.stateManager.addState('Waiting', new states.Waiting());
       this.stateManager.change('Default');
 
       this.bindListeners();
