@@ -43,5 +43,13 @@ module khet {
 
     mouseOut(evt: MouseEvent) {
     }
+
+
+    mouseDown(evt: MouseEvent) {
+    }
+
+
+    click(evt: MouseEvent) {
+    }
   }
 }

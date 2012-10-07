@@ -12,6 +12,11 @@ module khet.pieces {
     }
 
 
+    click(evt: MouseEvent) {
+      console.log('CCLICK');
+    }
+
+
     render() {
       var ctx: CanvasRenderingContext2D = khet.Core.inst.ctx;
       ctx.save();

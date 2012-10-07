@@ -2,6 +2,7 @@
 ///<reference path="./states/StateManager"/>
 ///<reference path="./states/Default"/>
 ///<reference path="./states/Menu"/>
+///<reference path="./states/Game"/>
 ///<reference path="./states/IState"/>
 ///<reference path="./pieces/Anubis"/>
 ///<reference path="./events"/>
@@ -59,6 +60,7 @@ module khet {
 
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());
+      this.stateManager.addState('Game', new states.Game());
       this.stateManager.change('Default');
 
       this.bindListeners();
@@ -88,11 +90,14 @@ module khet {
 
 
     bindListeners() {
+      events.listen(this.canvas, 'click',
+          (evt: MouseEvent) => this.click(evt));
+
       events.listen(this.canvas, 'mousemove',
           (evt: MouseEvent) => this.mouseMove(evt));
 
-      this.canvas.addEventListener('mousedown',
-          (evt: MouseEvent) => this.mouseDown(evt), false);
+      events.listen(this.canvas, 'mousedown',
+          (evt: MouseEvent) => this.mouseDown(evt));
 
       this.canvas.addEventListener('mouseup',
           (evt: MouseEvent) => this.mouseUp(evt), false);
@@ -112,6 +117,7 @@ module khet {
 
 
     mouseDown(evt) {
+      this.stateManager.state.mouseDown(evt);
     }
 
 
@@ -119,8 +125,11 @@ module khet {
     }
 
 
+    click(evt: MouseEvent) {
+      this.stateManager.state.click(evt);
+    }
+
     mouseMove(evt: MouseEvent) {
-      evt.stop = false;
       this.stateManager.state.mouseMove(evt);
     }
 

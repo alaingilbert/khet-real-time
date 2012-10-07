@@ -14,8 +14,8 @@ module khet {
 
 
     static getCasePosition(caseX: number, caseY: number): math.Coordinate {
-      var x: number = caseX * Board.caseWidth;
-      var y: number = caseY * Board.caseWidth;
+      var x: number = caseX * Board.caseWidth + caseX + 1;
+      var y: number = caseY * Board.caseWidth + caseY + 1;
       return new math.Coordinate(x, y);
     }
 
@@ -51,6 +51,17 @@ module khet {
       evt.offsetX -= this.x;
       evt.offsetY -= this.y;
       this.pieceManager.mouseMove(evt);
+
+      return true;
+    }
+
+
+    click(evt: MouseEvent): bool {
+      if (evt.stop) { return false; }
+
+      evt.offsetX -= this.x;
+      evt.offsetY -= this.y;
+      this.pieceManager.click(evt);
 
       return true;
     }

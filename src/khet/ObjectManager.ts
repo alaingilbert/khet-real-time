@@ -102,6 +102,42 @@ module khet {
       }
       return true;
     }
+
+
+    mouseDown(evt: MouseEvent) {
+      if (evt.stop) { return false; }
+
+      var mouseX: number = evt.offsetX;
+      var mouseY: number = evt.offsetY;
+
+      for (var i: number = 0; i < this.objs.length; i++) {
+        var obj: IObject2D = this.objs[i];
+        if (obj.isPointInside(mouseX, mouseY)) {
+          obj.mouseDown(evt);
+          break;
+        }
+      }
+
+      return true;
+    }
+
+
+    click(evt: MouseEvent) {
+      if (evt.stop) { return false; }
+
+      var mouseX: number = evt.offsetX;
+      var mouseY: number = evt.offsetY;
+
+      for (var i: number = 0; i < this.objs.length; i++) {
+        var obj: IObject2D = this.objs[i];
+        if (obj.isPointInside(mouseX, mouseY)) {
+          obj.click(evt);
+          break;
+        }
+      }
+
+      return true;
+    }
   }
 
 }

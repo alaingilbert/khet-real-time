@@ -1,6 +1,7 @@
 ///<reference path="../Object2D"/>
 ///<reference path="./IPiece"/>
 ///<reference path="./math/Coordinate"/>
+///<reference path="../Board"/>
 
 
 

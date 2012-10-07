@@ -1,20 +1,54 @@
 ///<reference path="./State"/>
-///<reference path="../Board"/>
+///<reference path="../Button"/>
+///<reference path="../ButtonManager"/>
 
 
 
 module khet.states {
 
   export class Menu extends State {
-    board: Board;
-    pieceManager: khet.pieces.PieceManager;
+    buttonManager: ButtonManager;
 
 
     init() {
-      this.board = new Board(30, 0, 600);
-      this.pieceManager = this.board.pieceManager;
-      var anubis = new khet.pieces.Anubis(1, 1, Team.Gray);
-      this.pieceManager.push(anubis);
+      var y: number = 30;
+      var step: number = 60;
+
+      var btnClassic = new Button('Classic', 10, y, 150, 50);
+      btnClassic.click = function() {
+        Core.inst.stateManager.change('Game');
+      };
+
+      y += step;
+      var btnDynasty = new Button('Dynasty', 10, y, 150, 50);
+      btnDynasty.click = function() {
+        Core.inst.stateManager.change('Game');
+      };
+
+      y += step;
+      var btnImhotep = new Button('Imhotep', 10, y, 150, 50);
+      btnImhotep.click = function() {
+        Core.inst.stateManager.change('Game');
+      };
+
+      y += step;
+      var btnIsis = new Button('Isis', 10, y, 150, 50);
+      btnIsis.click = function() {
+        Core.inst.stateManager.change('Game');
+      };
+
+      y += step;
+      var btnOsiris = new Button('Osiris', 10, y, 150, 50);
+      btnOsiris.click = function() {
+        Core.inst.stateManager.change('Game');
+      };
+
+      this.buttonManager = new ButtonManager();
+      this.buttonManager.push(btnClassic);
+      this.buttonManager.push(btnDynasty);
+      this.buttonManager.push(btnImhotep);
+      this.buttonManager.push(btnIsis);
+      this.buttonManager.push(btnOsiris);
     }
 
 
@@ -24,17 +58,19 @@ module khet.states {
       ctx.clearRect(0, 0, Core.inst.canvas.width, Core.inst.canvas.height);
       ctx.strokeRect(0.5, 0.5, Core.inst.canvas.width - 1, Core.inst.canvas.height - 1);
 
-      this.board.render();
+      this.buttonManager.render();
 
       ctx.restore();
     }
 
 
     mouseMove(evt: MouseEvent) {
-      var x: number = evt.offsetX;
-      var y: number = evt.offsetY;
-      this.board.mouseMove(evt);
-      //console.log(x, y, Board.getCase(x, y).toString());
+      this.buttonManager.mouseMove(evt);
+    }
+
+
+    click(evt: MouseEvent) {
+      this.buttonManager.click(evt);
     }
 
 

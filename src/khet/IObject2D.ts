@@ -14,6 +14,8 @@ module khet {
     mouseMove: (MouseEvent) => bool;
     mouseOver: (MouseEvent) => void;
     mouseOut: (MouseEvent) => void;
+    mouseDown: (MouseEvent) => void;
+    click: (MouseEvent) => void;
   }
 
 }
