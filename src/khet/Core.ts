@@ -48,16 +48,22 @@ module khet {
     socket;
     over: IObject2D;
     selected: IObject2D;
+    roomId: string;
 
 
-    constructor() {
+    constructor(roomId: string) {
       Core.inst = this;
+      this.roomId = roomId;
 
       this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
       this.ctx = this.canvas.getContext('2d');
 
       this.stateManager = new states.StateManager();
       this.socket = io.connect('http://127.0.0.1:5000/');
+      this.socket.emit('init', roomId);
+      console.log('CALISS', roomId);
+
+      this.socket.on('shit', function(data) { console.log('SHIT', data); });
 
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());

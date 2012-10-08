@@ -2,4 +2,6 @@
 
 
 
-var Game = new khet.Core();
+var bootstrap = function(roomId) {
+  var Game = new khet.Core(roomId);
+};

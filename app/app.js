@@ -30,6 +30,7 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/:room', routes.room);
 
 
 server.listen(app.get('port'), function() {
@@ -38,7 +39,16 @@ server.listen(app.get('port'), function() {
 
 
 io.sockets.on('connection', function(socket) {
+  socket.on('init', function(roomId) {
+    socket.set('roomId', roomId, function() {
+      socket.join(roomId);
+    });
+  });
+
+
   socket.on('getSeat', function(data) {
-    console.log('getSeat', data);
+    socket.get('roomId', function(err, roomId) {
+      socket.broadcast.to(roomId).emit('shit', 'CALISS');
+    });
   });
 });
