@@ -18,7 +18,14 @@ module khet {
       var proxy = events.getProxy();
       proxy.src = src;
       proxy.key = type;
+      proxy.proxy = proxy;
       src.addEventListener(type, proxy, false);
+    }
+
+
+    static unlisten(src: EventTarget, type: string,
+        listener: (evt) => void)
+    {
     }
 
 

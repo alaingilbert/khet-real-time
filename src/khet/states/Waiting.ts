@@ -1,3 +1,5 @@
+///<reference path="../jquery.d.ts"/>
+///<reference path="../events"/>
 ///<reference path="./State"/>
 ///<reference path="../Loader"/>
 
@@ -15,6 +17,19 @@ module khet.states {
       this.dots = '.';
       this.delay = 800;
       this.counter = 0;
+      $('#btnSilver').bind('click', function(evt) {
+        console.log('SILVER');
+        Core.inst.socket.emit('getSeat', 'silver');
+      });
+    }
+
+
+    dispose() {
+      $('#btnSilver').unbind('click');
+    }
+
+
+    getSeat(team: string) {
     }
 
 
@@ -45,10 +60,6 @@ module khet.states {
       ctx.fillText(this.dots, 0, 40);
 
       ctx.restore();
-    }
-
-
-    dispose() {
     }
   }
 

@@ -35,3 +35,10 @@ app.get('/users', user.list);
 server.listen(app.get('port'), function() {
   console.log("Express server listening on port " + app.get('port'));
 });
+
+
+io.sockets.on('connection', function(socket) {
+  socket.on('getSeat', function(data) {
+    console.log('getSeat', data);
+  });
+});
