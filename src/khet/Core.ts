@@ -49,11 +49,13 @@ module khet {
     over: IObject2D;
     selected: IObject2D;
     roomId: string;
+    mySide: string;
 
 
     constructor(roomId: string) {
       Core.inst = this;
       this.roomId = roomId;
+      this.mySide = null;
 
       this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
       this.ctx = this.canvas.getContext('2d');
@@ -61,9 +63,24 @@ module khet {
       this.stateManager = new states.StateManager();
       this.socket = io.connect('http://127.0.0.1:5000/');
       this.socket.emit('init', roomId);
-      console.log('CALISS', roomId);
 
-      this.socket.on('shit', function(data) { console.log('SHIT', data); });
+
+      this.socket.on('sideTaken', function(data) {
+        $('#btn' + data).addClass('disabled');
+      });
+
+
+      this.socket.on('sideFree', function(data) {
+        $('#btn' + data).removeClass('disabled');
+      });
+
+
+      this.socket.on('gotSide', function(data) {
+        $('#btn' + data).addClass('disabled');
+        Core.inst.mySide = data;
+        $('#btnStart').removeClass('disabled');
+      });
+
 
       this.stateManager.addState('Default', new states.Default());
       this.stateManager.addState('Menu', new states.Menu());

@@ -18,14 +18,18 @@ module khet.states {
       this.delay = 800;
       this.counter = 0;
       $('#btnSilver').bind('click', function(evt) {
-        console.log('SILVER');
-        Core.inst.socket.emit('getSeat', 'silver');
+        Core.inst.socket.emit('getSeat', 'Silver');
+      });
+
+      $('#btnRed').bind('click', function(evt) {
+        Core.inst.socket.emit('getSeat', 'Red');
       });
     }
 
 
     dispose() {
       $('#btnSilver').unbind('click');
+      $('#btnRed').unbind('click');
     }
 
 

@@ -48,7 +48,15 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('getSeat', function(data) {
     socket.get('roomId', function(err, roomId) {
-      socket.broadcast.to(roomId).emit('shit', 'CALISS');
+      socket.get('side', function(err, oldSide) {
+        if (oldSide) {
+          io.sockets.in(roomId).emit('sideFree', oldSide);
+        }
+        socket.set('side', data, function() {
+          socket.broadcast.to(roomId).emit('sideTaken', data);
+          socket.emit('gotSide', data);
+        });
+      });
     });
   });
 });
