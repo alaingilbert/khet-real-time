@@ -24,12 +24,18 @@ module khet.states {
       $('#btnRed').bind('click', function(evt) {
         Core.inst.socket.emit('getSeat', 'Red');
       });
+
+      $('#btnStart').bind('click', function(evt) {
+        $('#btnStart').attr('disabled', 'disabled');
+        Core.inst.socket.emit('startGame');
+      });
     }
 
 
     dispose() {
       $('#btnSilver').unbind('click');
       $('#btnRed').unbind('click');
+      $('#btnStart').unbind('click');
     }
 
 

@@ -72,6 +72,7 @@ module khet {
 
       this.socket.on('sideFree', function(data) {
         $('#btn' + data).removeAttr('disabled');
+        $('#btn' + data).css('color', '');
       });
 
 
@@ -79,6 +80,16 @@ module khet {
         $('#btn' + data).attr('disabled', 'disabled');
         Core.inst.mySide = data;
         $('#btnStart').removeAttr('disabled');
+      });
+
+
+      this.socket.on('startPressed', function(side) {
+        $('#btn' + side).css('color', 'blue');
+      });
+
+
+      this.socket.on('starting', function() {
+        Core.inst.stateManager.change('Game');
       });
 
 

@@ -51,6 +51,9 @@ io.sockets.on('connection', function(socket) {
 
       for (var side in tmpInfos[roomId]) {
         socket.emit('sideTaken', side);
+        if (tmpInfos[roomId][side]['ready']) {
+          socket.emit('startPressed', side);
+        }
       }
     });
   });
@@ -67,8 +70,26 @@ io.sockets.on('connection', function(socket) {
           socket.set('side', data, function() {
             socket.broadcast.to(roomId).emit('sideTaken', data);
             socket.emit('gotSide', data);
-            tmpInfos[roomId][data] = true;
+            tmpInfos[roomId][data] = {};
           });
+        }
+      });
+    });
+  });
+
+
+  socket.on('startGame', function() {
+    socket.get('roomId', function(err, roomId) {
+      socket.get('side', function(err, side) {
+        io.sockets.in(roomId).emit('startPressed', side);
+        tmpInfos[roomId][side]['ready'] = true;
+
+        if (tmpInfos[roomId]['Silver'] &&
+            tmpInfos[roomId]['Silver']['ready'] &&
+            tmpInfos[roomId]['Red'] &&
+            tmpInfos[roomId]['Red']['ready'])
+        {
+          io.sockets.in(roomId).emit('starting');
         }
       });
     });
