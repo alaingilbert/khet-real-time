@@ -36,9 +36,20 @@
 
   <div class="container">
     <div class="row">
-      Index
+      <div class="span2">
+        <button id="btnSilver" class="btn btn-large btn-block" type="button">Sit as Silver</button>
+        <button id="btnRed" class="btn btn-large btn-block" type="button">Sit as Red</button>
+        <button id="btnStart" class="btn btn-large btn-block" disabled="disabled" type="button">Start Game</button>
+        <br />
+        By: <a href="http://twitter.com/alain_gilbert/" target="_blank">@alain_gilbert</a>
+      </div>
+      <div class="span10">
+        <canvas id="canvas" width="800" height="600"></canvas>
+      </div>
     </div>
   </div>
+  <script src="/javascripts/compiled.js"></script>
+  <script>bootstrap('<%= room %>');</script>
 
   </body>
 </html>

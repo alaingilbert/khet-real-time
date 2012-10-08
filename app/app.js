@@ -38,10 +38,20 @@ server.listen(app.get('port'), function() {
 });
 
 
+var tmpInfos = {};
+
+
 io.sockets.on('connection', function(socket) {
   socket.on('init', function(roomId) {
     socket.set('roomId', roomId, function() {
       socket.join(roomId);
+      if (!tmpInfos[roomId]) {
+        tmpInfos[roomId] = {};
+      }
+
+      for (var side in tmpInfos[roomId]) {
+        socket.emit('sideTaken', side);
+      }
     });
   });
 
@@ -51,11 +61,28 @@ io.sockets.on('connection', function(socket) {
       socket.get('side', function(err, oldSide) {
         if (oldSide) {
           io.sockets.in(roomId).emit('sideFree', oldSide);
+          delete tmpInfos[roomId][oldSide];
         }
-        socket.set('side', data, function() {
-          socket.broadcast.to(roomId).emit('sideTaken', data);
-          socket.emit('gotSide', data);
-        });
+        if (!tmpInfos[roomId][data]) {
+          socket.set('side', data, function() {
+            socket.broadcast.to(roomId).emit('sideTaken', data);
+            socket.emit('gotSide', data);
+            tmpInfos[roomId][data] = true;
+          });
+        }
+      });
+    });
+  });
+
+
+  socket.on('disconnect', function() {
+    socket.get('roomId', function(err, roomId) {
+      socket.get('side', function(err, oldSide) {
+        io.sockets.in(roomId).emit('sideFree', oldSide);
+        if (!tmpInfos[roomId]) {
+          tmpInfos[roomId] = {};
+        }
+        delete tmpInfos[roomId][oldSide];
       });
     });
   });

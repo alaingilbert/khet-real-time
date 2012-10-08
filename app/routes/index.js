@@ -9,5 +9,5 @@ exports.index = function(req, res){
 
 
 exports.room = function(req, res){
-  res.render('index', { title: 'Khet', room: req.params.room });
+  res.render('room', { title: 'Khet', room: req.params.room });
 };

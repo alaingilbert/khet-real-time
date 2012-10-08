@@ -66,19 +66,19 @@ module khet {
 
 
       this.socket.on('sideTaken', function(data) {
-        $('#btn' + data).addClass('disabled');
+        $('#btn' + data).attr('disabled', 'disabled');
       });
 
 
       this.socket.on('sideFree', function(data) {
-        $('#btn' + data).removeClass('disabled');
+        $('#btn' + data).removeAttr('disabled');
       });
 
 
       this.socket.on('gotSide', function(data) {
-        $('#btn' + data).addClass('disabled');
+        $('#btn' + data).attr('disabled', 'disabled');
         Core.inst.mySide = data;
-        $('#btnStart').removeClass('disabled');
+        $('#btnStart').removeAttr('disabled');
       });
 
 
